@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "magpie-music-manager"
+version = "0.1.0"
+description = "MagpieMusicManager: shared music library database (music_db) and library manager"
+requires-python = ">=3.10"
+# music_db itself needs nothing beyond the standard library, so the player
+# (vlc_tagger) can depend on it alone. The manager GUI needs PyQt5, and
+# mutagen to read tags.
+dependencies = []
+
+[project.optional-dependencies]
+gui = ["PyQt5>=5.15", "mutagen>=1.46"]
+
+[project.gui-scripts]
+magpie = "magpie.__main__:main"
+
+[tool.setuptools]
+packages = ["music_db", "magpie", "magpie.gui"]
